@@ -43,13 +43,9 @@ const closeButtonPopupImage = popupImage.querySelector('.popup__close');
 
 // плавность модальных окон
 
-const smoothPopupEdit = document.querySelector('.popup_type_edit');
-const smoothPopupAdd = document.querySelector('.popup_type_new-card');
-const smoothPopupImage = document.querySelector('.popup_type_image');
-
-smoothPopupEdit.classList.add('popup_is-animated');
-smoothPopupAdd.classList.add('popup_is-animated');
-smoothPopupImage.classList.add('popup_is-animated');
+popupEdit.classList.add('popup_is-animated');
+popupAdd.classList.add('popup_is-animated');
+popupImage.classList.add('popup_is-animated');
 
 // обработчики открытия и закрытия модальных окон
 
