@@ -17,13 +17,13 @@ const image = { name: 'Jak', link: avatarImage };
 
 const cardTemplate = document.querySelector('#card-template').content.querySelector('.places__item');
 const cardsContainer = document.querySelector('.places__list');
-const popupImageCaption = document.querySelector('.popup__caption');
 
 // переменные модальных окон
 
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_new-card');
 const popupImage = document.querySelector('.popup_type_image');
+const popupImageCaption = document.querySelector('.popup__caption');
 
 const formElement = document.querySelector('.popup__form');
 const userCardForm = document.forms['new-place'];
