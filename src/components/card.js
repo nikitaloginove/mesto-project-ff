@@ -31,7 +31,7 @@ function removeCard(cardElement) {
 // лайк
 
 function likeCard(cardElement) {
-    const likeButton = cardElement.querySelector('.card__like-button');
+    const likeButton = cardElement.querySelector(".card__like-button");
     likeButton.classList.toggle('card__like-button_is-active');
 }
 

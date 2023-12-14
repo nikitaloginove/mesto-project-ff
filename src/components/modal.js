@@ -22,7 +22,6 @@ function closeEsc(evt) {
 function closeClick(evt) {
     const modalElement = evt.currentTarget;
     if (evt.target === modalElement) {
-        document.removeEventListener('keydown', closeEsc);
         closeModal(modalElement);
     }
 }

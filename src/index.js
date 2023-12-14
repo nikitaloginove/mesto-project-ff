@@ -20,9 +20,11 @@ const cardsContainer = document.querySelector('.places__list');
 
 // переменные модальных окон
 
+const popups = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_new-card');
 const popupImage = document.querySelector('.popup_type_image');
+const popupImageElement = popupImage.querySelector('.popup__image');
 const popupImageCaption = document.querySelector('.popup__caption');
 
 const formElement = document.querySelector('.popup__form');
@@ -36,10 +38,6 @@ const jobOutput = document.querySelector('.profile__description');
 
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
-
-const closeButtonPopupEdit = popupEdit.querySelector('.popup__close');
-const closeButtonPopupAdd = popupAdd.querySelector('.popup__close');
-const closeButtonPopupImage = popupImage.querySelector('.popup__close');
 
 // плавность модальных окон
 
@@ -60,21 +58,18 @@ addButton.addEventListener('click', function openPopupAdd() {
     openModal(popupAdd);
 });
 
-closeButtonPopupEdit.addEventListener('click', function closePopupEdit() {
-    closeModal(popupEdit);
-});
-
-closeButtonPopupAdd.addEventListener('click', function closePopupAdd() {
-    closeModal(popupAdd);
-});
-
-closeButtonPopupImage.addEventListener('click', function closePopupImage() {
-    closeModal(popupImage);
-});
-
-popupEdit.addEventListener('click', closeClick);
-popupAdd.addEventListener('click', closeClick);
-popupImage.addEventListener('click', closeClick);
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closeModal(popup)
+        }
+        if (evt.target.classList.contains('popup__close')) {
+            closeModal(popup)
+        }
+        
+        closeClick(evt)
+    })
+})
 
 // отправка форм
 
@@ -127,7 +122,6 @@ function handleFormAddSubmit(evt) {
 // открытие карточки 
 
 function openpopupImage(name, link) {
-    const popupImageElement = popupImage.querySelector('.popup__image');
   
     popupImageElement.src = link;
     popupImageElement.setAttribute('alt', name);
