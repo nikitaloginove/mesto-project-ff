@@ -1,8 +1,5 @@
 import { cardTemplate, openpopupImage } from '../index';
 import { putLike, deleteLike, deleteCard } from '../api';
-import { closeModal } from './modal';
-
-
 
 // создание карточки
 
@@ -21,8 +18,8 @@ function addCard(card, profileId, removeCard, likeCard, openpopupImage) {
     if (profileId !== card.owner["_id"]) {
       deleteButton.remove();
     } else {
-      deleteButton.addEventListener('click', () => {
-        removeCard(card, cardElement);
+      deleteButton.addEventListener('click', (evt) => {
+        removeCard(evt, card._id);
       });
     }
 
@@ -46,18 +43,13 @@ function addCard(card, profileId, removeCard, likeCard, openpopupImage) {
 
 // удаление карточки
 
-
-function removeCard(cardElement) {
-
+function removeCard(evt, cardId) {
   deleteCard(cardId)
-    .then(() => {
-      document.getElementById(cardElement.cardId).remove();
-    })
+  .then(() => evt.target.closest('.card').remove())
     .catch((err) => console.log(err));
 }
 
 // лайк
-
 
 function likeCard(card, profileId, cardElement) {
   const cardLikeButton = cardElement.querySelector(".card__like-button");
@@ -88,8 +80,5 @@ function likeCard(card, profileId, cardElement) {
 function isLikeMine(card, profileId) {
   return card.likes.some((item) => item._id === profileId);
 }
-
-
-  
 
 export { addCard, removeCard, likeCard };
