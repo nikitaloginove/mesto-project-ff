@@ -10,8 +10,8 @@
 import './pages/index.css';
 import { addCard, removeCard, likeCard } from './components/card';
 import { openModal, closeModal, closeClick } from './components/modal';
-import { enableValidation, clearValidation } from './validation';
-import { getUserInfo, getInitialCards, сhangeUserInfo, newCardUser, changeAvatar } from './api';
+import { enableValidation, clearValidation } from './components/validation';
+import { getUserInfo, getInitialCards, сhangeUserInfo, newCardUser, changeAvatar } from './components/api';
 
 const validationConfig = {
     formSelector: '.popup__form',
@@ -91,6 +91,7 @@ enableValidation(validationConfig);
 
 editButton.addEventListener('click', function openPopupEdit() {
     clearValidation(profileForm, validationConfig);
+    profileForm.reset();
     nameInput.value = nameOutput.textContent;
     jobInput.value = jobOutput.textContent;
 
@@ -119,7 +120,7 @@ popups.forEach((popup) => {
 
 // отправка форм
 
-formElement.addEventListener('submit', handleFormSubmit);
+formElement.addEventListener('submit', handleFormEditSubmit);
 userCardForm.addEventListener('submit', handleFormAddSubmit);
 
 // смена аватара
@@ -151,7 +152,7 @@ profileAvatar.addEventListener("click", () => {
 
 // сохранение инфо
 
-function handleFormSubmit(evt) {
+function handleFormEditSubmit(evt) {
     evt.preventDefault(); 
     
     const buttonText = popupEditButton.textContent;
@@ -166,8 +167,6 @@ function handleFormSubmit(evt) {
     })
     .catch((error) => console.log("данные не обработаны:", error))
     .finally(() => (popupEditButton.textContent = buttonText));
-    
-    clearValidation(profileForm, validationConfig);
 }
 
 // новая карточка
@@ -196,8 +195,6 @@ function handleFormAddSubmit(evt) {
     })
     .catch((error) => console.log("данные не обработаны:", error))
     .finally(() => (popupAddButton.textContent = buttonText));
-
-    clearValidation(userCardForm, validationConfig);
 }
 
 // открытие карточки 

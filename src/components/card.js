@@ -1,5 +1,5 @@
 import { cardTemplate, openpopupImage } from '../index';
-import { putLike, deleteLike, deleteCard } from '../api';
+import { putLike, deleteLike, deleteCard } from './api';
 
 // создание карточки
 
